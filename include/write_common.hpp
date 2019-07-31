@@ -27,7 +27,7 @@ write_loop(int fd, uint8_t* buf, size_t buf_size, size_t count)
 	for (auto off = off_t{0}; off < off_t(count); off += buf_size) {
 		fill_buffer(buf, buf_size);
 		auto r = full_write(fd, buf, buf_size, off);
-		assert(r == buf_size);
+		assert(r.get() == buf_size);
 	}
 }
 
